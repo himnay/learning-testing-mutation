@@ -29,6 +29,7 @@ class TestCalculatorService {
     class Add {
 
         @ParameterizedTest(name = "{0} + {1} = {2}")
+        @DisplayName("Adds two integers correctly, including negative and zero operands")
         @CsvSource({"0, 0, 0", "1, 2, 3", "-1, 1, 0", "-3, -4, -7", "100, -100, 0"})
         void add(int a, int b, int expected) {
             assertEquals(expected, calculator.add(a, b));
@@ -40,6 +41,7 @@ class TestCalculatorService {
     class Subtract {
 
         @ParameterizedTest(name = "{0} - {1} = {2}")
+        @DisplayName("Subtracts two integers correctly, including negative and zero operands")
         @CsvSource({"5, 3, 2", "0, 0, 0", "-1, -1, 0", "3, 5, -2", "10, 10, 0"})
         void subtract(int a, int b, int expected) {
             assertEquals(expected, calculator.subtract(a, b));
@@ -51,6 +53,7 @@ class TestCalculatorService {
     class Multiply {
 
         @ParameterizedTest(name = "{0} * {1} = {2}")
+        @DisplayName("Multiplies two integers correctly, including negative and zero operands")
         @CsvSource({"3, 4, 12", "0, 100, 0", "100, 0, 0", "-2, 5, -10", "-3, -4, 12", "1, 99, 99"})
         void multiply(int a, int b, int expected) {
             assertEquals(expected, calculator.multiply(a, b));
@@ -62,6 +65,7 @@ class TestCalculatorService {
     class Divide {
 
         @ParameterizedTest(name = "{0} / {1} = {2}")
+        @DisplayName("Divides two doubles and returns the correct quotient")
         @CsvSource({"10.0, 2.0, 5.0", "7.0, 2.0, 3.5", "-9.0, 3.0, -3.0", "0.0, 5.0, 0.0", "1.0, 4.0, 0.25"})
         void divide(double a, double b, double expected) {
             assertEquals(expected, calculator.divide(a, b), 0.0001);
@@ -86,6 +90,7 @@ class TestCalculatorService {
     class IsPositive {
 
         @ParameterizedTest(name = "{0} is positive")
+        @DisplayName("Reports numbers above zero as positive")
         @ValueSource(ints = {1, 2, 100, Integer.MAX_VALUE})
         void trueWhenAboveZero(int n) {
             assertTrue(calculator.isPositive(n));
@@ -98,6 +103,7 @@ class TestCalculatorService {
         }
 
         @ParameterizedTest(name = "{0} is not positive")
+        @DisplayName("Reports negative numbers as not positive")
         @ValueSource(ints = {-1, -100, Integer.MIN_VALUE})
         void falseWhenNegative(int n) {
             assertFalse(calculator.isPositive(n));
@@ -109,12 +115,14 @@ class TestCalculatorService {
     class IsEven {
 
         @ParameterizedTest(name = "{0} is even")
+        @DisplayName("Recognizes even numbers correctly, including negative even numbers")
         @ValueSource(ints = {0, 2, -4, 100, -100})
         void trueForEven(int n) {
             assertTrue(calculator.isEven(n));
         }
 
         @ParameterizedTest(name = "{0} is odd")
+        @DisplayName("Reports odd numbers as not even")
         @ValueSource(ints = {1, 3, -1, 99, -99})
         void falseForOdd(int n) {
             assertFalse(calculator.isEven(n));
@@ -130,6 +138,7 @@ class TestCalculatorService {
     class Max {
 
         @ParameterizedTest(name = "max({0},{1}) = {2}")
+        @DisplayName("Returns the larger of two integers, including equal and negative inputs")
         @CsvSource({"3, 5, 5", "5, 3, 5", "4, 4, 4", "-1, -2, -1", "0, 0, 0"})
         void max(int a, int b, int expected) {
             assertEquals(expected, calculator.max(a, b));
@@ -141,6 +150,7 @@ class TestCalculatorService {
     class Min {
 
         @ParameterizedTest(name = "min({0},{1}) = {2}")
+        @DisplayName("Returns the smaller of two integers, including equal and negative inputs")
         @CsvSource({"3, 5, 3", "5, 3, 3", "4, 4, 4", "-1, -2, -2", "0, 0, 0"})
         void min(int a, int b, int expected) {
             assertEquals(expected, calculator.min(a, b));
@@ -152,6 +162,7 @@ class TestCalculatorService {
     class Clamp {
 
         @ParameterizedTest(name = "clamp({0},{1},{2}) = {3}")
+        @DisplayName("Clamps a value to the given range, including cases just inside and just outside the boundary")
         @CsvSource({
             "5,  1, 10,  5",   // within range
             "0,  1, 10,  1",   // exactly one below min → clamp to min
@@ -175,6 +186,7 @@ class TestCalculatorService {
     class Factorial {
 
         @ParameterizedTest(name = "{0}! = {1}")
+        @DisplayName("Computes the factorial of non-negative integers correctly")
         @CsvSource({"0, 1", "1, 1", "2, 2", "3, 6", "5, 120", "10, 3628800"})
         void factorial(int n, long expected) {
             assertEquals(expected, calculator.factorial(n));
@@ -198,12 +210,14 @@ class TestCalculatorService {
     class IsPrime {
 
         @ParameterizedTest(name = "{0} is prime")
+        @DisplayName("Recognizes prime numbers correctly")
         @ValueSource(ints = {2, 3, 5, 7, 11, 13, 17, 97})
         void trueForPrimes(int n) {
             assertTrue(calculator.isPrime(n));
         }
 
         @ParameterizedTest(name = "{0} is not prime")
+        @DisplayName("Recognizes non-prime numbers correctly")
         @ValueSource(ints = {0, 1, 4, 6, 8, 9, 15, 100})
         void falseForNonPrimes(int n) {
             assertFalse(calculator.isPrime(n));
@@ -219,6 +233,7 @@ class TestCalculatorService {
     class Percentage {
 
         @ParameterizedTest(name = "{0} of {1} = {2}%")
+        @DisplayName("Computes what percentage one value is of another")
         @CsvSource({"50.0, 200.0, 25.0", "100.0, 100.0, 100.0", "1.0, 4.0, 25.0", "0.0, 50.0, 0.0"})
         void percentage(double part, double total, double expected) {
             assertEquals(expected, calculator.percentage(part, total), 0.0001);

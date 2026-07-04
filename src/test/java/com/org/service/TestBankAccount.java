@@ -92,6 +92,7 @@ class TestBankAccount {
         }
 
         @ParameterizedTest(name = "deposit {0} on 100.0 → {1}")
+        @DisplayName("Deposits increase the balance by exactly the deposited amount")
         @CsvSource({"50.0, 150.0", "0.01, 100.01", "1000.0, 1100.0"})
         void deposit(double amount, double expectedBalance) {
             account.deposit(amount);
@@ -106,6 +107,7 @@ class TestBankAccount {
         }
 
         @ParameterizedTest(name = "invalid deposit amount {0} throws")
+        @DisplayName("Rejects negative or invalid deposit amounts")
         @ValueSource(doubles = {-1.0, -0.01, Double.NEGATIVE_INFINITY})
         void negativeDepositThrows(double amount) {
             assertThrows(IllegalArgumentException.class, () -> account.deposit(amount));
@@ -171,6 +173,7 @@ class TestBankAccount {
     class CanWithdraw {
 
         @ParameterizedTest(name = "balance={0} overdraft={1} amount={2} canWithdraw={3}")
+        @DisplayName("Determines withdrawal eligibility against balance plus overdraft limit, across boundary cases")
         @CsvSource({
             "100.0,  0.0, 100.0, true",     // exactly equal — kills >= vs > mutant
             "100.0,  0.0, 100.1, false",    // one cent over
@@ -239,6 +242,7 @@ class TestBankAccount {
     class ApplyInterest {
 
         @ParameterizedTest(name = "balance={0} rate={1}% interest={2} newBalance={3}")
+        @DisplayName("Applies an interest rate to the balance and returns the correct interest amount and new balance")
         @CsvSource({
             "1000.0,  5.0,  50.0, 1050.0",
             "1000.0, 10.0, 100.0, 1100.0",

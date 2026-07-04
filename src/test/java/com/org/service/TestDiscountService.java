@@ -24,6 +24,7 @@ class TestDiscountService {
     class PercentageDiscountTests {
 
         @ParameterizedTest(name = "{0}% off £{1} = £{2}")
+        @DisplayName("Applies a percentage discount to compute the correct final price")
         @CsvSource({
             "0,   100.0, 100.0",    // 0% — kills MATH mutant (100 * 1 - 0/100)
             "10,  100.0,  90.0",
@@ -37,6 +38,7 @@ class TestDiscountService {
         }
 
         @ParameterizedTest(name = "{0}% off £{1} saves £{2}")
+        @DisplayName("Calculates the correct savings amount for a percentage discount")
         @CsvSource({"10, 100.0, 10.0", "25, 200.0, 50.0", "0, 100.0, 0.0"})
         void savings(double pct, double price, double expectedSaving) {
             DiscountService svc = new DiscountService(new PercentageDiscount(pct));
@@ -72,6 +74,7 @@ class TestDiscountService {
     class FlatDiscountTests {
 
         @ParameterizedTest(name = "price={1} flat off={0} expected={2}")
+        @DisplayName("Applies a flat discount to compute the final price, flooring at zero when the discount exceeds the price")
         @CsvSource({
             "10.0, 50.0, 40.0",
             "50.0, 50.0,  0.0",    // exactly equal — boundary
