@@ -1,5 +1,20 @@
 # Mutation Testing with PITest
 
+<img src="image/pitest-logo.png" alt="PITest" width="80"/>
+
+## Table of contents
+
+1. [What is Mutation Testing?](#what-is-mutation-testing)
+2. [Parent POM Hierarchy](#parent-pom-hierarchy)
+3. [Project Structure](#project-structure)
+4. [Design Patterns (GoF)](#design-patterns-gof)
+5. [Tech Stack](#tech-stack)
+6. [JUnit 5 Features Used](#junit-5-features-used)
+7. [PITest Mutation Coverage — What Each Test Kills](#pitest-mutation-coverage--what-each-test-kills)
+8. [Running Tests](#running-tests)
+9. [Running Mutation Coverage Only](#running-mutation-coverage-only)
+10. [References](#references)
+
 A Maven project demonstrating mutation testing using [PITest](https://pitest.org) with JUnit 5 and Java 25.
 Inherits shared plugin management from the corporate `super-pom`.
 
