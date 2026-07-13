@@ -46,12 +46,16 @@ org.springframework.boot:spring-boot-starter-parent:4.1.0
 ```
 
 The super-pom supplies:
+<ul>
+
 - `maven-compiler-plugin` via `${java.version}` → overridden to **25** here
 - `maven-surefire-plugin` (3.x with JUnit Platform auto-detection)
 - `spring-boot-maven-plugin` — **skipped** (no application class)
 - `git-commit-id-maven-plugin` — **skipped** (not needed for a test module)
 - `jacoco-maven-plugin` in `<pluginManagement>` (opt-in) — **not activated** because JaCoCo 0.8.13
   is incompatible with Java 25 class format (major version 69)
+
+</ul>
 
 ---
 
@@ -162,7 +166,11 @@ HTML report: `target/pit-reports/<timestamp>/index.html`
 <a id="references"></a>
 ## 10. 📚 References
 
+<ul>
+
 - [PITest official site](https://pitest.org)
 - [PITest mutator documentation](https://pitest.org/quickstart/mutators/)
 - [pitest-junit5-plugin](https://github.com/pitest/pitest-junit5-plugin)
 - [JUnit 5 User Guide](https://junit.org/junit5/docs/current/user-guide/)
+
+</ul>
