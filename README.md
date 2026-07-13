@@ -20,7 +20,8 @@ Inherits shared plugin management from the corporate `super-pom`.
 
 ---
 
-## What is Mutation Testing?
+<a id="what-is-mutation-testing"></a>
+## 1. 🧬 What is Mutation Testing?
 
 Mutation testing evaluates test-suite quality by automatically introducing small code changes (mutations)
 into production source — flipping `>` to `>=`, negating a boolean, removing a return value — then running
@@ -35,7 +36,8 @@ The goal is to maximise the percentage of killed mutants.
 
 ---
 
-## Parent POM Hierarchy
+<a id="parent-pom-hierarchy"></a>
+## 2. 🔨 Parent POM Hierarchy
 
 ```
 org.springframework.boot:spring-boot-starter-parent:4.1.0
@@ -53,7 +55,8 @@ The super-pom supplies:
 
 ---
 
-## Project Structure
+<a id="project-structure"></a>
+## 3. 🏗️ Project Structure
 
 ```
 src/
@@ -78,7 +81,8 @@ src/
 
 ---
 
-## Design Patterns (GoF)
+<a id="design-patterns-gof"></a>
+## 4. 🏗️ Design Patterns (GoF)
 
 | Pattern           | Where applied                                    | Why                                               |
 |-------------------|--------------------------------------------------|---------------------------------------------------|
@@ -90,7 +94,8 @@ src/
 
 ---
 
-## Tech Stack
+<a id="tech-stack"></a>
+## 5. 🧰 Tech Stack
 
 | Component               | Version | Source                                         |
 |-------------------------|---------|------------------------------------------------|
@@ -103,7 +108,8 @@ src/
 
 ---
 
-## JUnit 5 Features Used
+<a id="junit-5-features-used"></a>
+## 6. 🧪 JUnit 5 Features Used
 
 | Feature                   | Where                                        |
 |---------------------------|----------------------------------------------|
@@ -118,7 +124,8 @@ src/
 
 ---
 
-## PITest Mutation Coverage — What Each Test Kills
+<a id="pitest-mutation-coverage--what-each-test-kills"></a>
+## 7. 🧬 PITest Mutation Coverage — What Each Test Kills
 
 | Mutator                   | Example                  | Killed by                                          |
 |---------------------------|--------------------------|----------------------------------------------------|
@@ -134,13 +141,15 @@ src/
 
 ---
 
-## Running Tests
+<a id="running-tests"></a>
+## 8. 🧪 Running Tests
 
 ```bash
 mvn test
 ```
 
-## Running Mutation Coverage Only
+<a id="running-mutation-coverage-only"></a>
+## 9. 🧬 Running Mutation Coverage Only
 
 ```bash
 mvn org.pitest:pitest-maven:mutationCoverage
@@ -150,7 +159,8 @@ HTML report: `target/pit-reports/<timestamp>/index.html`
 
 ---
 
-## References
+<a id="references"></a>
+## 10. 📚 References
 
 - [PITest official site](https://pitest.org)
 - [PITest mutator documentation](https://pitest.org/quickstart/mutators/)
