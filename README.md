@@ -46,6 +46,7 @@ org.springframework.boot:spring-boot-starter-parent:4.1.0
 ```
 
 The super-pom supplies:
+
 <ul>
 
 - `maven-compiler-plugin` via `${java.version}` → overridden to **25** here
