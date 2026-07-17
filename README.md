@@ -27,10 +27,10 @@ Mutation testing evaluates test-suite quality by automatically introducing small
 into production source — flipping `>` to `>=`, negating a boolean, removing a return value — then running
 the tests against each mutated version.
 
-| Result       | Meaning                                                  |
-|--------------|----------------------------------------------------------|
-| **Killed**   | At least one test failed — the mutation was caught. ✓    |
-| **Survived** | All tests passed — a coverage gap was revealed. ✗        |
+| Result       | Meaning                                               |
+|--------------|-------------------------------------------------------|
+| **Killed**   | At least one test failed — the mutation was caught. ✓ |
+| **Survived** | All tests passed — a coverage gap was revealed. ✗     |
 
 The goal is to maximise the percentage of killed mutants.
 
@@ -89,25 +89,25 @@ src/
 <a id="design-patterns-gof"></a>
 ## 4. 🏗️ Design Patterns (GoF)
 
-| Pattern           | Where applied                                    | Why                                               |
-|-------------------|--------------------------------------------------|---------------------------------------------------|
-| Template Method   | `AbstractService` ← `StockService`, `DiscountService` | Reuse guard-clause logic without duplication  |
-| Strategy          | `DiscountStrategy` + implementations            | Swap discount algorithms at runtime               |
-| Factory Method    | `DiscountStrategyFactory.create(Type, double)`  | Single creation point; avoids `new` scattered in tests |
-| Null Object       | `NoDiscount`                                     | Eliminates null checks in `DiscountService`       |
-| Builder           | `BankAccount.Builder`                            | Readable construction with multiple optional fields |
+| Pattern         | Where applied                                         | Why                                                    |
+|-----------------|-------------------------------------------------------|--------------------------------------------------------|
+| Template Method | `AbstractService` ← `StockService`, `DiscountService` | Reuse guard-clause logic without duplication           |
+| Strategy        | `DiscountStrategy` + implementations                  | Swap discount algorithms at runtime                    |
+| Factory Method  | `DiscountStrategyFactory.create(Type, double)`        | Single creation point; avoids `new` scattered in tests |
+| Null Object     | `NoDiscount`                                          | Eliminates null checks in `DiscountService`            |
+| Builder         | `BankAccount.Builder`                                 | Readable construction with multiple optional fields    |
 
 ---
 
 <a id="tech-stack"></a>
 ## 5. 🧰 Tech Stack
 
-| Component               | Version | Source                                         |
-|-------------------------|---------|------------------------------------------------|
-| Java                    | 25      | override in pom                                |
-| JUnit Jupiter (JUnit 5) | 5.14.2  | explicit                                       |
-| PITest (pitest-maven)   | 1.19.1  | explicit                                       |
-| pitest-junit5-plugin    | 1.2.2   | explicit                                       |
+| Component               | Version | Source                                             |
+|-------------------------|---------|----------------------------------------------------|
+| Java                    | 25      | override in pom                                    |
+| JUnit Jupiter (JUnit 5) | 5.14.2  | explicit                                           |
+| PITest (pitest-maven)   | 1.19.1  | explicit                                           |
+| pitest-junit5-plugin    | 1.2.2   | explicit                                           |
 | maven-surefire-plugin   | 3.x     | inherited (super-pom → spring-boot-starter-parent) |
 | maven-compiler-plugin   | 3.x     | inherited (super-pom → spring-boot-starter-parent) |
 
@@ -116,33 +116,33 @@ src/
 <a id="junit-5-features-used"></a>
 ## 6. 🧪 JUnit 5 Features Used
 
-| Feature                   | Where                                        |
-|---------------------------|----------------------------------------------|
-| `@Nested`                 | All test classes — groups by behaviour       |
-| `@ParameterizedTest`      | All test classes                             |
-| `@CsvSource`              | Multi-argument boundary cases                |
-| `@ValueSource`            | Single-argument predicate cases              |
-| `@DisplayName`            | Every class and method                       |
-| `@BeforeEach`             | `TestCalculatorService`, `TestBankAccount`   |
-| `assertAll`               | Multi-field state verification               |
-| `assertThrows` + message  | Every guard clause                           |
+| Feature                  | Where                                      |
+|--------------------------|--------------------------------------------|
+| `@Nested`                | All test classes — groups by behaviour     |
+| `@ParameterizedTest`     | All test classes                           |
+| `@CsvSource`             | Multi-argument boundary cases              |
+| `@ValueSource`           | Single-argument predicate cases            |
+| `@DisplayName`           | Every class and method                     |
+| `@BeforeEach`            | `TestCalculatorService`, `TestBankAccount` |
+| `assertAll`              | Multi-field state verification             |
+| `assertThrows` + message | Every guard clause                         |
 
 ---
 
 <a id="pitest-mutation-coverage--what-each-test-kills"></a>
 ## 7. 🧬 PITest Mutation Coverage — What Each Test Kills
 
-| Mutator                   | Example                  | Killed by                                          |
-|---------------------------|--------------------------|----------------------------------------------------|
-| `CONDITIONALS_BOUNDARY`   | `> 0` → `>= 0`          | `isPositive(0)` asserts false; `hasEnough(10,10)` asserts true |
-| `NEGATE_CONDITIONALS`     | `isEmpty` → `!isEmpty`   | Separate true/false test cases for every predicate |
-| `MATH`                    | `a + b` → `a - b`       | Exact value assertions on every arithmetic result  |
-| `RETURN_VALUES`           | `return x` → `return 0` | `assertEquals(expected, actual)` everywhere        |
-| `VOID_METHOD_CALLS`       | skip `validateNonNegative` | State-unchanged assertions after rejected inputs |
-| `INCREMENTS`              | `i += 2` → `i += 1`     | `factorial` and `isPrime` parameterised cases      |
-| `NULL_RETURNS`            | `return account` → `null` | Builder test reads fields after `build()`         |
-| `FALSE_RETURNS`           | `canWithdraw` → false    | Exact-equal boundary cases assert true             |
-| `TRUE_RETURNS`            | `isEmpty` → true         | `new StockService(1).isEmpty()` asserts false      |
+| Mutator                 | Example                    | Killed by                                                      |
+|-------------------------|----------------------------|----------------------------------------------------------------|
+| `CONDITIONALS_BOUNDARY` | `> 0` → `>= 0`             | `isPositive(0)` asserts false; `hasEnough(10,10)` asserts true |
+| `NEGATE_CONDITIONALS`   | `isEmpty` → `!isEmpty`     | Separate true/false test cases for every predicate             |
+| `MATH`                  | `a + b` → `a - b`          | Exact value assertions on every arithmetic result              |
+| `RETURN_VALUES`         | `return x` → `return 0`    | `assertEquals(expected, actual)` everywhere                    |
+| `VOID_METHOD_CALLS`     | skip `validateNonNegative` | State-unchanged assertions after rejected inputs               |
+| `INCREMENTS`            | `i += 2` → `i += 1`        | `factorial` and `isPrime` parameterised cases                  |
+| `NULL_RETURNS`          | `return account` → `null`  | Builder test reads fields after `build()`                      |
+| `FALSE_RETURNS`         | `canWithdraw` → false      | Exact-equal boundary cases assert true                         |
+| `TRUE_RETURNS`          | `isEmpty` → true           | `new StockService(1).isEmpty()` asserts false                  |
 
 ---
 
