@@ -34,6 +34,16 @@ the tests against each mutated version.
 
 The goal is to maximise the percentage of killed mutants.
 
+```mermaid
+flowchart LR
+    src[Production code] --> pit[PITest]
+    pit -->|"flip > to >=, negate boolean,<br/>remove return …"| mut["Mutant #N"]
+    mut --> tests[Run test suite]
+    tests -->|"a test fails"| killed["KILLED — tests caught it"]
+    tests -->|"all tests pass"| survived["SURVIVED — coverage gap"]
+    survived --> fix["strengthen tests"] --> pit
+```
+
 ---
 
 <a id="parent-pom-hierarchy"></a>
