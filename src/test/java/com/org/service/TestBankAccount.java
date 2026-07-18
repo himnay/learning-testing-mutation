@@ -92,8 +92,8 @@ class TestBankAccount {
         }
 
         @ParameterizedTest(name = "deposit {0} on 100.0 → {1}")
-        @DisplayName("Deposits increase the balance by exactly the deposited amount")
         @CsvSource({"50.0, 150.0", "0.01, 100.01", "1000.0, 1100.0"})
+        @DisplayName("Deposits increase the balance by exactly the deposited amount")
         void deposit(double amount, double expectedBalance) {
             account.deposit(amount);
             assertEquals(expectedBalance, account.getBalance(), 0.001);
@@ -106,8 +106,8 @@ class TestBankAccount {
             assertEquals(100.0, account.getBalance(), 0.001);  // state unchanged
         }
 
-        @ParameterizedTest(name = "invalid deposit amount {0} throws")
         @DisplayName("Rejects negative or invalid deposit amounts")
+        @ParameterizedTest(name = "invalid deposit amount {0} throws")
         @ValueSource(doubles = {-1.0, -0.01, Double.NEGATIVE_INFINITY})
         void negativeDepositThrows(double amount) {
             assertThrows(IllegalArgumentException.class, () -> account.deposit(amount));

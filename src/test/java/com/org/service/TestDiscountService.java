@@ -38,8 +38,8 @@ class TestDiscountService {
         }
 
         @ParameterizedTest(name = "{0}% off £{1} saves £{2}")
-        @DisplayName("Calculates the correct savings amount for a percentage discount")
         @CsvSource({"10, 100.0, 10.0", "25, 200.0, 50.0", "0, 100.0, 0.0"})
+        @DisplayName("Calculates the correct savings amount for a percentage discount")
         void savings(double pct, double price, double expectedSaving) {
             DiscountService svc = new DiscountService(new PercentageDiscount(pct));
             assertEquals(expectedSaving, svc.calculateSavings(price), 0.001);

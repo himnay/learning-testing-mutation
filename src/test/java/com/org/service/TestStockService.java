@@ -55,8 +55,8 @@ class TestStockService {
     class Add {
 
         @ParameterizedTest(name = "start={0}, add={1}, result={2}")
-        @DisplayName("Adding a quantity increases both the returned total and the stored quantity on hand")
         @CsvSource({"100, 10, 110", "0, 0, 0", "50, 50, 100", "0, 1, 1"})
+        @DisplayName("Adding a quantity increases both the returned total and the stored quantity on hand")
         void add(int initial, int qty, int expected) {
             StockService s = new StockService(initial);
             int returned = s.add(qty);
@@ -84,8 +84,8 @@ class TestStockService {
     class Deduct {
 
         @ParameterizedTest(name = "start={0}, deduct={1}, result={2}")
-        @DisplayName("Deducting a quantity decreases both the returned total and the stored quantity on hand")
         @CsvSource({"100, 10, 90", "100, 100, 0", "100, 0, 100", "1, 1, 0"})
+        @DisplayName("Deducting a quantity decreases both the returned total and the stored quantity on hand")
         void deduct(int initial, int qty, int expected) {
             StockService s = new StockService(initial);
             int returned = s.deduct(qty);

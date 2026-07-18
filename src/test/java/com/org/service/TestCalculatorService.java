@@ -29,8 +29,8 @@ class TestCalculatorService {
     class Add {
 
         @ParameterizedTest(name = "{0} + {1} = {2}")
-        @DisplayName("Adds two integers correctly, including negative and zero operands")
         @CsvSource({"0, 0, 0", "1, 2, 3", "-1, 1, 0", "-3, -4, -7", "100, -100, 0"})
+        @DisplayName("Adds two integers correctly, including negative and zero operands")
         void add(int a, int b, int expected) {
             assertEquals(expected, calculator.add(a, b));
         }
@@ -41,8 +41,8 @@ class TestCalculatorService {
     class Subtract {
 
         @ParameterizedTest(name = "{0} - {1} = {2}")
-        @DisplayName("Subtracts two integers correctly, including negative and zero operands")
         @CsvSource({"5, 3, 2", "0, 0, 0", "-1, -1, 0", "3, 5, -2", "10, 10, 0"})
+        @DisplayName("Subtracts two integers correctly, including negative and zero operands")
         void subtract(int a, int b, int expected) {
             assertEquals(expected, calculator.subtract(a, b));
         }
@@ -90,8 +90,8 @@ class TestCalculatorService {
     class IsPositive {
 
         @ParameterizedTest(name = "{0} is positive")
-        @DisplayName("Reports numbers above zero as positive")
         @ValueSource(ints = {1, 2, 100, Integer.MAX_VALUE})
+        @DisplayName("Reports numbers above zero as positive")
         void trueWhenAboveZero(int n) {
             assertTrue(calculator.isPositive(n));
         }
@@ -103,8 +103,8 @@ class TestCalculatorService {
         }
 
         @ParameterizedTest(name = "{0} is not positive")
-        @DisplayName("Reports negative numbers as not positive")
         @ValueSource(ints = {-1, -100, Integer.MIN_VALUE})
+        @DisplayName("Reports negative numbers as not positive")
         void falseWhenNegative(int n) {
             assertFalse(calculator.isPositive(n));
         }
@@ -115,15 +115,15 @@ class TestCalculatorService {
     class IsEven {
 
         @ParameterizedTest(name = "{0} is even")
-        @DisplayName("Recognizes even numbers correctly, including negative even numbers")
         @ValueSource(ints = {0, 2, -4, 100, -100})
+        @DisplayName("Recognizes even numbers correctly, including negative even numbers")
         void trueForEven(int n) {
             assertTrue(calculator.isEven(n));
         }
 
         @ParameterizedTest(name = "{0} is odd")
-        @DisplayName("Reports odd numbers as not even")
         @ValueSource(ints = {1, 3, -1, 99, -99})
+        @DisplayName("Reports odd numbers as not even")
         void falseForOdd(int n) {
             assertFalse(calculator.isEven(n));
         }
@@ -138,8 +138,8 @@ class TestCalculatorService {
     class Max {
 
         @ParameterizedTest(name = "max({0},{1}) = {2}")
-        @DisplayName("Returns the larger of two integers, including equal and negative inputs")
         @CsvSource({"3, 5, 5", "5, 3, 5", "4, 4, 4", "-1, -2, -1", "0, 0, 0"})
+        @DisplayName("Returns the larger of two integers, including equal and negative inputs")
         void max(int a, int b, int expected) {
             assertEquals(expected, calculator.max(a, b));
         }
@@ -150,8 +150,8 @@ class TestCalculatorService {
     class Min {
 
         @ParameterizedTest(name = "min({0},{1}) = {2}")
-        @DisplayName("Returns the smaller of two integers, including equal and negative inputs")
         @CsvSource({"3, 5, 3", "5, 3, 3", "4, 4, 4", "-1, -2, -2", "0, 0, 0"})
+        @DisplayName("Returns the smaller of two integers, including equal and negative inputs")
         void min(int a, int b, int expected) {
             assertEquals(expected, calculator.min(a, b));
         }
@@ -186,8 +186,8 @@ class TestCalculatorService {
     class Factorial {
 
         @ParameterizedTest(name = "{0}! = {1}")
-        @DisplayName("Computes the factorial of non-negative integers correctly")
         @CsvSource({"0, 1", "1, 1", "2, 2", "3, 6", "5, 120", "10, 3628800"})
+        @DisplayName("Computes the factorial of non-negative integers correctly")
         void factorial(int n, long expected) {
             assertEquals(expected, calculator.factorial(n));
         }
@@ -210,15 +210,15 @@ class TestCalculatorService {
     class IsPrime {
 
         @ParameterizedTest(name = "{0} is prime")
-        @DisplayName("Recognizes prime numbers correctly")
         @ValueSource(ints = {2, 3, 5, 7, 11, 13, 17, 97})
+        @DisplayName("Recognizes prime numbers correctly")
         void trueForPrimes(int n) {
             assertTrue(calculator.isPrime(n));
         }
 
         @ParameterizedTest(name = "{0} is not prime")
-        @DisplayName("Recognizes non-prime numbers correctly")
         @ValueSource(ints = {0, 1, 4, 6, 8, 9, 15, 100})
+        @DisplayName("Recognizes non-prime numbers correctly")
         void falseForNonPrimes(int n) {
             assertFalse(calculator.isPrime(n));
         }
