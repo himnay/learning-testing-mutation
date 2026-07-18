@@ -13,6 +13,7 @@ public class BankAccount {
         this.overdraftLimit = builder.overdraftLimit;
     }
 
+    /** Handles deposit. */
     public void deposit(double amount) {
         if (amount <= 0) {
             throw new IllegalArgumentException("Deposit amount must be positive, got: " + amount);
@@ -20,6 +21,7 @@ public class BankAccount {
         balance += amount;
     }
 
+    /** Handles withdraw. */
     public void withdraw(double amount) {
         if (amount <= 0) {
             throw new IllegalArgumentException("Withdrawal amount must be positive, got: " + amount);
@@ -31,6 +33,7 @@ public class BankAccount {
         balance -= amount;
     }
 
+    /** Transfers. */
     public void transfer(BankAccount target, double amount) {
         if (target == null) {
             throw new IllegalArgumentException("Target account must not be null");
@@ -39,6 +42,7 @@ public class BankAccount {
         target.deposit(amount);
     }
 
+    /** Applies interest. */
     public double applyInterest(double annualRate) {
         if (annualRate < 0) {
             throw new IllegalArgumentException("Interest rate cannot be negative, got: " + annualRate);
@@ -49,6 +53,7 @@ public class BankAccount {
     }
 
     // Boundary: balance + overdraftLimit >= amount (not just >)
+    /** Returns whether withdraw. */
     public boolean canWithdraw(double amount) {
         return getAvailableBalance() >= amount;
     }
@@ -65,6 +70,7 @@ public class BankAccount {
         return accountId;
     }
 
+    /** Returns the builder. */
     public static Builder builder() {
         return new Builder();
     }
@@ -75,11 +81,13 @@ public class BankAccount {
         private double initialBalance = 0.0;
         private double overdraftLimit = 0.0;
 
+        /** Returns the account id. */
         public Builder accountId(String accountId) {
             this.accountId = accountId;
             return this;
         }
 
+        /** Returns the initial balance. */
         public Builder initialBalance(double initialBalance) {
             if (initialBalance < 0) {
                 throw new IllegalArgumentException(
@@ -89,6 +97,7 @@ public class BankAccount {
             return this;
         }
 
+        /** Returns the overdraft limit. */
         public Builder overdraftLimit(double overdraftLimit) {
             if (overdraftLimit < 0) {
                 throw new IllegalArgumentException(
@@ -98,6 +107,7 @@ public class BankAccount {
             return this;
         }
 
+        /** Builds. */
         public BankAccount build() {
             if (accountId == null || accountId.isBlank()) {
                 throw new IllegalStateException("Account ID is required");

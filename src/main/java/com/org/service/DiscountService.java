@@ -17,6 +17,7 @@ public class DiscountService extends AbstractService {
         this.strategy = strategy;
     }
 
+    /** Calculates final price. */
     public double calculateFinalPrice(double originalPrice) {
         if (originalPrice < 0) {
             throw new IllegalArgumentException("Price cannot be negative, got: " + originalPrice);
@@ -24,6 +25,7 @@ public class DiscountService extends AbstractService {
         return strategy.apply(originalPrice);
     }
 
+    /** Calculates savings. */
     public double calculateSavings(double originalPrice) {
         return originalPrice - calculateFinalPrice(originalPrice);
     }

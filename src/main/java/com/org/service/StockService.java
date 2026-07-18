@@ -10,12 +10,14 @@ public class StockService extends AbstractService {
         this.qtyOnHand = qtyOnHand;
     }
 
+    /** Adds. */
     public int add(int qty) {
         validateNonNegative(qty, "Quantity");
         qtyOnHand = qtyOnHand + qty;
         return qtyOnHand;
     }
 
+    /** Returns the deduct. */
     public int deduct(int qty) {
         validateNonNegative(qty, "Quantity");
         int newQty = qtyOnHand - qty;
@@ -36,6 +38,7 @@ public class StockService extends AbstractService {
     }
 
     // Boundary: >= means exactly-equal quantity is sufficient
+    /** Returns whether enough. */
     public boolean hasEnough(int qty) {
         validateNonNegative(qty, "Quantity");
         return qtyOnHand >= qty;
