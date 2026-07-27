@@ -20,7 +20,6 @@
     <description>PITest mutation testing demo with JUnit 5 and Java 25</description>
 
     <properties>
-        <!-- Override super-pom default (21) -->
         <java.version>25</java.version>
 
         <junit.version>5.14.2</junit.version>
@@ -30,7 +29,6 @@
 
     <dependencies>
 
-        <!-- JUnit 5 aggregate: junit-jupiter-api + engine + params -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
@@ -44,10 +42,6 @@
         <finalName>maven-mutation-testing</finalName>
         <plugins>
 
-            <!--
-                Disable plugins inherited from super-pom that are irrelevant
-                for a plain test-only module with no Spring Boot application.
-            -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
@@ -64,13 +58,6 @@
                 </configuration>
             </plugin>
 
-            <!--
-                JaCoCo 0.8.13 (in super-pom pluginManagement) is incompatible with
-                Java 25 class format (major version 69). Not opted in here — re-enable
-                once a compatible JaCoCo version is available.
-            -->
-
-            <!-- PITest mutation coverage — bound to the test phase -->
             <plugin>
                 <groupId>org.pitest</groupId>
                 <artifactId>pitest-maven</artifactId>
@@ -86,7 +73,6 @@
                     </execution>
                 </executions>
 
-                <!-- pitest-junit5-plugin bridges PITest with the JUnit Platform -->
                 <dependencies>
                     <dependency>
                         <groupId>org.pitest</groupId>
