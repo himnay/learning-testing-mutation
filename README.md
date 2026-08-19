@@ -1,8 +1,8 @@
-# <span style="color:hsl(74,68%,32%)">Mutation Testing with PITest</span>
+# <span style="color:hsl(74,80%,58%)">Mutation Testing with PITest</span>
 
 <img src="image/pitest-logo.png" alt="PITest" width="80"/>
 
-## <span style="color:hsl(104,68%,32%)">Table of contents</span>
+## <span style="color:hsl(212,80%,58%)">Table of contents</span>
 
 1. 🧬 [What is Mutation Testing?](#what-is-mutation-testing)
 2. 🔨 [Parent POM Hierarchy](#parent-pom-hierarchy)
@@ -21,7 +21,7 @@ Inherits shared plugin management from the corporate `super-pom`.
 ---
 
 <a id="what-is-mutation-testing"></a>
-## <span style="color:hsl(134,68%,32%)">1. 🧬 What is Mutation Testing?</span>
+## <span style="color:hsl(349,80%,58%)">1. 🧬 What is Mutation Testing?</span>
 
 Mutation testing evaluates test-suite quality by automatically introducing small code changes (mutations)
 into production source — flipping `>` to `>=`, negating a boolean, removing a return value — then running
@@ -47,7 +47,7 @@ flowchart LR
 ---
 
 <a id="parent-pom-hierarchy"></a>
-## <span style="color:hsl(164,68%,36%)">2. 🔨 Parent POM Hierarchy</span>
+## <span style="color:hsl(127,80%,58%)">2. 🔨 Parent POM Hierarchy</span>
 
 ```
 org.springframework.boot:spring-boot-starter-parent:4.1.0
@@ -71,7 +71,7 @@ The super-pom supplies:
 ---
 
 <a id="project-structure"></a>
-## <span style="color:hsl(194,68%,36%)">3. 🏗️ Project Structure</span>
+## <span style="color:hsl(264,80%,58%)">3. 🏗️ Project Structure</span>
 
 ```
 src/
@@ -97,7 +97,7 @@ src/
 ---
 
 <a id="design-patterns-gof"></a>
-## <span style="color:hsl(224,68%,44%)">4. 🏗️ Design Patterns (GoF)</span>
+## <span style="color:hsl(42,80%,58%)">4. 🏗️ Design Patterns (GoF)</span>
 
 | Pattern         | Where applied                                         | Why                                                    |
 |-----------------|-------------------------------------------------------|--------------------------------------------------------|
@@ -110,7 +110,7 @@ src/
 ---
 
 <a id="tech-stack"></a>
-## <span style="color:hsl(254,68%,44%)">5. 🧰 Tech Stack</span>
+## <span style="color:hsl(179,80%,58%)">5. 🧰 Tech Stack</span>
 
 | Component               | Version | Source                                             |
 |-------------------------|---------|----------------------------------------------------|
@@ -124,7 +124,7 @@ src/
 ---
 
 <a id="junit-5-features-used"></a>
-## <span style="color:hsl(284,68%,44%)">6. 🧪 JUnit 5 Features Used</span>
+## <span style="color:hsl(317,80%,58%)">6. 🧪 JUnit 5 Features Used</span>
 
 | Feature                  | Where                                      |
 |--------------------------|--------------------------------------------|
@@ -140,7 +140,7 @@ src/
 ---
 
 <a id="pitest-mutation-coverage--what-each-test-kills"></a>
-## <span style="color:hsl(314,68%,44%)">7. 🧬 PITest Mutation Coverage — What Each Test Kills</span>
+## <span style="color:hsl(94,80%,58%)">7. 🧬 PITest Mutation Coverage — What Each Test Kills</span>
 
 | Mutator                 | Example                    | Killed by                                                      |
 |-------------------------|----------------------------|----------------------------------------------------------------|
@@ -157,14 +157,14 @@ src/
 ---
 
 <a id="running-tests"></a>
-## <span style="color:hsl(344,68%,44%)">8. 🧪 Running Tests</span>
+## <span style="color:hsl(232,80%,58%)">8. 🧪 Running Tests</span>
 
 ```bash
 mvn test
 ```
 
 <a id="running-mutation-coverage-only"></a>
-## <span style="color:hsl(14,68%,44%)">9. 🧬 Running Mutation Coverage Only</span>
+## <span style="color:hsl(9,80%,58%)">9. 🧬 Running Mutation Coverage Only</span>
 
 ```bash
 mvn org.pitest:pitest-maven:mutationCoverage
@@ -175,7 +175,7 @@ HTML report: `target/pit-reports/<timestamp>/index.html`
 ---
 
 <a id="references"></a>
-## <span style="color:hsl(44,68%,32%)">10. 📚 References</span>
+## <span style="color:hsl(147,80%,58%)">10. 📚 References</span>
 
 <ul>
 
