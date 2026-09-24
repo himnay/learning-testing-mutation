@@ -8,7 +8,7 @@
     <parent>
         <groupId>com.org.llm</groupId>
         <artifactId>super-pom</artifactId>
-        <version>1.0.0</version>
+        <version>1.1.2</version>
         <relativePath/>
     </parent>
 
@@ -22,9 +22,6 @@
     <properties>
         <java.version>25</java.version>
 
-        <junit.version>5.14.2</junit.version>
-        <pitest.version>1.19.1</pitest.version>
-        <pitest-junit5-plugin.version>1.2.2</pitest-junit5-plugin.version>
     </properties>
 
     <dependencies>
@@ -32,7 +29,6 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
-            <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
 
@@ -61,7 +57,6 @@
             <plugin>
                 <groupId>org.pitest</groupId>
                 <artifactId>pitest-maven</artifactId>
-                <version>${pitest.version}</version>
 
                 <executions>
                     <execution>
@@ -73,6 +68,8 @@
                     </execution>
                 </executions>
 
+                <!-- super-pom attaches this only inside its opt-in mutation-test profile; this demo
+                     runs PIT on every build, so declare it here (version from super-pom's property) -->
                 <dependencies>
                     <dependency>
                         <groupId>org.pitest</groupId>

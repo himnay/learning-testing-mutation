@@ -15,7 +15,7 @@
 9. 🧬 [Running Mutation Coverage Only](#running-mutation-coverage-only)
 10. 📚 [References](#references)
 
-A Maven project demonstrating mutation testing using [PITest](https://pitest.org) with JUnit 5 and Java 25.
+A Maven project demonstrating mutation testing using [PITest](https://pitest.org) with JUnit 6 (Jupiter API) and Java 25. Current run: 169 tests, 317 mutations, 93% killed, test strength 95%.
 Inherits shared plugin management from the corporate `super-pom`.
 
 ---
@@ -63,8 +63,11 @@ The super-pom supplies:
 - `maven-surefire-plugin` (3.x with JUnit Platform auto-detection)
 - `spring-boot-maven-plugin` — **skipped** (no application class)
 - `git-commit-id-maven-plugin` — **skipped** (not needed for a test module)
-- `jacoco-maven-plugin` in `<pluginManagement>` (opt-in) — **not activated** because JaCoCo 0.8.13
-  is incompatible with Java 25 class format (major version 69)
+- `jacoco-maven-plugin` in `<pluginManagement>` (opt-in) — not activated here. The pinned 0.8.15
+  reads Java 25 classes fine (0.8.13 could not — major version 69); enable it if you want line
+  coverage next to mutation coverage
+- PIT itself had the same problem: 1.19.1 failed with "Unsupported class file major version 69";
+  the super-pom's 1.30.0 handles Java 25
 
 </ul>
 
@@ -115,9 +118,9 @@ src/
 | Component               | Version | Source                                             |
 |-------------------------|---------|----------------------------------------------------|
 | Java                    | 25      | override in pom                                    |
-| JUnit Jupiter (JUnit 5) | 5.14.2  | explicit                                           |
-| PITest (pitest-maven)   | 1.19.1  | explicit                                           |
-| pitest-junit5-plugin    | 1.2.2   | explicit                                           |
+| JUnit Jupiter (JUnit 6) | 6.0.3   | managed by Spring Boot 4.1.1 (via super-pom)       |
+| PITest (pitest-maven)   | 1.30.0  | super-pom `pitest-maven.version` (as of 2026)      |
+| pitest-junit5-plugin    | 1.2.3   | super-pom `pitest-junit5-plugin.version`; works with JUnit 6 |
 | maven-surefire-plugin   | 3.x     | inherited (super-pom → spring-boot-starter-parent) |
 | maven-compiler-plugin   | 3.x     | inherited (super-pom → spring-boot-starter-parent) |
 
