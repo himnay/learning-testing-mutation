@@ -1,6 +1,9 @@
 # <span style="color:hsl(74,80%,58%)">Mutation Testing with PITest</span>
 
-<img src="image/pitest-logo.png" alt="PITest" width="80"/>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/hcoles/pitest-site/gh-pages/images/pit-white-150x152.png">
+  <img src="https://raw.githubusercontent.com/hcoles/pitest-site/gh-pages/images/pit-black-150x152.png" alt="PIT (pitest.org)" width="90"/>
+</picture>
 
 ## <span style="color:hsl(212,80%,58%)">Table of contents</span>
 
@@ -51,7 +54,7 @@ flowchart LR
 
 ```
 org.springframework.boot:spring-boot-starter-parent:4.1.0
-  └── com.org.llm:super-pom:1.0.0
+  └── com.org.llm:super-pom:1.1.3
         └── com.org.test:mutation-testing:1.0-SNAPSHOT
 ```
 
@@ -144,6 +147,19 @@ src/
 
 <a id="pitest-mutation-coverage--what-each-test-kills"></a>
 ## <span style="color:hsl(94,80%,58%)">7. 🧬 PITest Mutation Coverage — What Each Test Kills</span>
+
+What `mvn verify` leaves in `target/pit-reports/` for this project — the summary, and one class
+opened up: every covered line carries its mutant count, and each mutant says how it was killed:
+
+<p align="center">
+  <img src="image/pit-report-summary.png" alt="PIT report summary: 9 classes, 97% line coverage, 93% mutation coverage (295 of 317), 95% test strength, broken down by package" width="620"/>
+</p>
+
+<p align="center">
+  <img src="image/pit-report-class.png" alt="PIT class report for PercentageDiscount: covered lines in green with per-line mutant counts, and the list of mutants on line 8, all KILLED" width="620"/>
+</p>
+
+<p align="center"><sub>Screenshots of this repository's own PIT 1.30.0 report.</sub></p>
 
 | Mutator                 | Example                    | Killed by                                                      |
 |-------------------------|----------------------------|----------------------------------------------------------------|
