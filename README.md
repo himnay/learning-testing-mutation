@@ -132,16 +132,16 @@ src/
 <a id="junit-5-features-used"></a>
 ## <span style="color:hsl(317,80%,58%)">6. 🧪 JUnit 5 Features Used</span>
 
-| Feature                  | Where                                      |
-|--------------------------|--------------------------------------------|
-| `@Nested`                | All test classes — groups by behaviour     |
-| `@ParameterizedTest`     | All test classes                           |
-| `@CsvSource`             | Multi-argument boundary cases              |
-| `@ValueSource`           | Single-argument predicate cases            |
-| `@DisplayName`           | Every class and method                     |
-| `@BeforeEach`            | `TestCalculatorService`, `TestBankAccount` |
-| `assertAll`              | Multi-field state verification             |
-| `assertThrows` + message | Every guard clause                         |
+| Feature                                   | Where                                      |
+|-------------------------------------------|--------------------------------------------|
+| [`@Nested`][Nested]                       | All test classes — groups by behaviour     |
+| [`@ParameterizedTest`][ParameterizedTest] | All test classes                           |
+| [`@CsvSource`][CsvSource]                 | Multi-argument boundary cases              |
+| [`@ValueSource`][ValueSource]             | Single-argument predicate cases            |
+| [`@DisplayName`][DisplayName]             | Every class and method                     |
+| [`@BeforeEach`][BeforeEach]               | `TestCalculatorService`, `TestBankAccount` |
+| `assertAll`                               | Multi-field state verification             |
+| `assertThrows` + message                  | Every guard clause                         |
 
 ---
 
@@ -204,3 +204,12 @@ HTML report: `target/pit-reports/<timestamp>/index.html`
 - [JUnit 5 User Guide](https://junit.org/junit5/docs/current/user-guide/)
 
 </ul>
+
+<!-- Library classes mentioned above, linked to their source at the versions this project builds with. -->
+
+[BeforeEach]: https://github.com/junit-team/junit-framework/blob/r6.0.3/junit-jupiter-api/src/main/java/org/junit/jupiter/api/BeforeEach.java
+[CsvSource]: https://github.com/junit-team/junit-framework/blob/r6.0.3/junit-jupiter-params/src/main/java/org/junit/jupiter/params/provider/CsvSource.java
+[DisplayName]: https://github.com/junit-team/junit-framework/blob/r6.0.3/junit-jupiter-api/src/main/java/org/junit/jupiter/api/DisplayName.java
+[Nested]: https://github.com/junit-team/junit-framework/blob/r6.0.3/junit-jupiter-api/src/main/java/org/junit/jupiter/api/Nested.java
+[ParameterizedTest]: https://github.com/junit-team/junit-framework/blob/r6.0.3/junit-jupiter-params/src/main/java/org/junit/jupiter/params/ParameterizedTest.java
+[ValueSource]: https://github.com/junit-team/junit-framework/blob/r6.0.3/junit-jupiter-params/src/main/java/org/junit/jupiter/params/provider/ValueSource.java
