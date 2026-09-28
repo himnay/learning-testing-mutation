@@ -178,7 +178,8 @@ class TestCalculatorService {
     }
 
     // -------------------------------------------------------------------------
-    // factorial — tests kill RETURN_VALUES and INCREMENTS mutants
+    // factorial — exact values kill MATH and PRIMITIVE_RETURNS mutants;
+    // 20 (largest that fits a long) vs 21 kills the overflow guard's boundary mutant
     // -------------------------------------------------------------------------
 
     @Nested
@@ -186,8 +187,8 @@ class TestCalculatorService {
     class Factorial {
 
         @ParameterizedTest(name = "{0}! = {1}")
-        @CsvSource({"0, 1", "1, 1", "2, 2", "3, 6", "5, 120", "10, 3628800"})
-        @DisplayName("Computes the factorial of non-negative integers correctly")
+        @CsvSource({"0, 1", "1, 1", "2, 2", "3, 6", "5, 120", "10, 3628800", "20, 2432902008176640000"})
+        @DisplayName("Computes the factorial of non-negative integers correctly, up to 20! (the largest that fits in a long)")
         void factorial(int n, long expected) {
             assertEquals(expected, calculator.factorial(n));
         }
@@ -198,6 +199,14 @@ class TestCalculatorService {
             IllegalArgumentException ex = assertThrows(IllegalArgumentException.class,
                 () -> calculator.factorial(-1));
             assertTrue(ex.getMessage().contains("negative"));
+        }
+
+        @ParameterizedTest(name = "{0}! overflows a long")
+        @ValueSource(ints = {21, 25, Integer.MAX_VALUE})
+        @DisplayName("throws instead of silently overflowing above 20! — kills boundary mutant (> vs >=)")
+        void overflowThrows(int n) {
+            ArithmeticException ex = assertThrows(ArithmeticException.class, () -> calculator.factorial(n));
+            assertTrue(ex.getMessage().contains("overflows"));
         }
     }
 
@@ -210,15 +219,15 @@ class TestCalculatorService {
     class IsPrime {
 
         @ParameterizedTest(name = "{0} is prime")
-        @ValueSource(ints = {2, 3, 5, 7, 11, 13, 17, 97})
-        @DisplayName("Recognizes prime numbers correctly")
+        @ValueSource(ints = {2, 3, 5, 7, 11, 13, 17, 97, Integer.MAX_VALUE})
+        @DisplayName("Recognizes prime numbers correctly, including 2^31-1 (loop bound must not overflow)")
         void trueForPrimes(int n) {
             assertTrue(calculator.isPrime(n));
         }
 
         @ParameterizedTest(name = "{0} is not prime")
-        @ValueSource(ints = {0, 1, 4, 6, 8, 9, 15, 100})
-        @DisplayName("Recognizes non-prime numbers correctly")
+        @ValueSource(ints = {0, 1, 4, 6, 8, 9, 15, 100, 2147117569})   // 2147117569 = 46337^2
+        @DisplayName("Recognizes non-prime numbers correctly, including the square of a prime near the int limit")
         void falseForNonPrimes(int n) {
             assertFalse(calculator.isPrime(n));
         }

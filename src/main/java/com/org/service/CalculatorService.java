@@ -2,6 +2,9 @@ package com.org.service;
 
 public class CalculatorService {
 
+    /** Largest n whose factorial fits in a long: 20! = 2432902008176640000. */
+    static final int MAX_LONG_FACTORIAL = 20;
+
     /** Adds. */
     public int add(int a, int b) {
         return a + b;
@@ -52,10 +55,18 @@ public class CalculatorService {
         return value;
     }
 
-    /** Returns the factorial. */
+    /**
+     * Returns n! for 0 <= n <= 20.
+     *
+     * @throws ArithmeticException for n > 20: 21! no longer fits in a long, and the
+     *         multiplication would silently overflow into a wrong (even negative) result
+     */
     public long factorial(int n) {
         if (n < 0) {
             throw new IllegalArgumentException("Factorial is not defined for negative numbers");
+        }
+        if (n > MAX_LONG_FACTORIAL) {
+            throw new ArithmeticException(n + "! overflows a long (max is " + MAX_LONG_FACTORIAL + "!)");
         }
         if (n == 0 || n == 1) {
             return 1L;
@@ -67,7 +78,9 @@ public class CalculatorService {
         if (n < 2) return false;
         if (n == 2) return true;
         if (n % 2 == 0) return false;
-        for (int i = 3; i * i <= n; i += 2) {
+        // i <= n / i, not i * i <= n: i * i overflows int for i > 46340, which made
+        // isPrime(Integer.MAX_VALUE) loop ~1e9 times and then report the prime 2^31-1 as composite
+        for (int i = 3; i <= n / i; i += 2) {
             if (n % i == 0) return false;
         }
         return true;

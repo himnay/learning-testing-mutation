@@ -73,6 +73,21 @@ class TestStockService {
             assertThrows(IllegalArgumentException.class, () -> s.add(-1));
             assertEquals(100, s.getQuantityOnHand());   // kills VOID_METHOD mutant on validateNonNegative
         }
+
+        @Test
+        @DisplayName("fills up to exactly Integer.MAX_VALUE")
+        void addUpToIntLimit() {
+            StockService s = new StockService(Integer.MAX_VALUE - 1);
+            assertEquals(Integer.MAX_VALUE, s.add(1));
+        }
+
+        @Test
+        @DisplayName("throws instead of wrapping to a negative quantity — state must not change")
+        void overflowThrows() {
+            StockService s = new StockService(Integer.MAX_VALUE);
+            assertThrows(ArithmeticException.class, () -> s.add(1));
+            assertEquals(Integer.MAX_VALUE, s.getQuantityOnHand());
+        }
     }
 
     // -------------------------------------------------------------------------

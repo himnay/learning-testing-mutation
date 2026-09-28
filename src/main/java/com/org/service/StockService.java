@@ -10,10 +10,15 @@ public class StockService extends AbstractService {
         this.qtyOnHand = qtyOnHand;
     }
 
-    /** Adds. */
+    /**
+     * Adds stock and returns the new quantity on hand.
+     *
+     * @throws ArithmeticException if the total would overflow an int (the stock is left unchanged);
+     *         plain {@code +} would wrap around to a negative quantity on hand
+     */
     public int add(int qty) {
         validateNonNegative(qty, "Quantity");
-        qtyOnHand = qtyOnHand + qty;
+        qtyOnHand = Math.addExact(qtyOnHand, qty);
         return qtyOnHand;
     }
 
