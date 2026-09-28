@@ -234,7 +234,7 @@ class TestCalculatorService {
     }
 
     // -------------------------------------------------------------------------
-    // percentage — kills MATH and RETURN_VALUES mutants
+    // percentage — kills MATH and PRIMITIVE_RETURNS mutants
     // -------------------------------------------------------------------------
 
     @Nested

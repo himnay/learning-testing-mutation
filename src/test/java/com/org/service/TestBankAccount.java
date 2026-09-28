@@ -234,7 +234,7 @@ class TestBankAccount {
     }
 
     // -------------------------------------------------------------------------
-    // applyInterest — kills MATH, RETURN_VALUES mutants
+    // applyInterest — kills MATH, PRIMITIVE_RETURNS mutants
     // -------------------------------------------------------------------------
 
     @Nested

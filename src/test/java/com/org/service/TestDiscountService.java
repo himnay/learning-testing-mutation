@@ -58,7 +58,7 @@ class TestDiscountService {
         }
 
         @Test
-        @DisplayName("getPercentage returns configured value — kills RETURN_VALUES mutant")
+        @DisplayName("getPercentage returns configured value — kills PRIMITIVE_RETURNS mutant")
         void getPercentage() {
             PercentageDiscount d = new PercentageDiscount(30);
             assertEquals(30.0, d.getPercentage(), 0.001);
@@ -93,7 +93,7 @@ class TestDiscountService {
         }
 
         @Test
-        @DisplayName("getDiscountAmount returns configured value — kills RETURN_VALUES mutant")
+        @DisplayName("getDiscountAmount returns configured value — kills PRIMITIVE_RETURNS mutant")
         void getDiscountAmount() {
             FlatDiscount d = new FlatDiscount(25.0);
             assertEquals(25.0, d.getDiscountAmount(), 0.001);
@@ -109,7 +109,7 @@ class TestDiscountService {
     class NoDiscountTests {
 
         @Test
-        @DisplayName("price is unchanged — kills RETURN_VALUES mutant")
+        @DisplayName("price is unchanged — kills PRIMITIVE_RETURNS mutant")
         void priceUnchanged() {
             DiscountService svc = new DiscountService(new NoDiscount());
             assertEquals(99.99, svc.calculateFinalPrice(99.99), 0.001);

@@ -47,7 +47,7 @@ class TestStockService {
     }
 
     // -------------------------------------------------------------------------
-    // add — verifies both return value AND persisted state (kills VOID_METHOD mutants)
+    // add — verifies both return value AND persisted state (kills VOID_METHOD_CALLS mutants)
     // -------------------------------------------------------------------------
 
     @Nested
@@ -71,7 +71,7 @@ class TestStockService {
         void rejectsNegativeQty() {
             StockService s = new StockService(100);
             assertThrows(IllegalArgumentException.class, () -> s.add(-1));
-            assertEquals(100, s.getQuantityOnHand());   // kills VOID_METHOD mutant on validateNonNegative
+            assertEquals(100, s.getQuantityOnHand());   // kills VOID_METHOD_CALLS mutant on validateNonNegative
         }
 
         @Test
