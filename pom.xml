@@ -8,7 +8,7 @@
     <parent>
         <groupId>com.org.llm</groupId>
         <artifactId>super-pom</artifactId>
-        <version>1.1.4</version>
+        <version>1.2.0</version>
         <relativePath/>
     </parent>
 
@@ -17,12 +17,7 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>Mutation Testing</name>
-    <description>PITest mutation testing demo with JUnit 5 and Java 25</description>
-
-    <properties>
-        <java.version>25</java.version>
-
-    </properties>
+    <description>PITest mutation testing demo with JUnit 6 and Java 27</description>
 
     <dependencies>
 
@@ -57,6 +52,7 @@
             <plugin>
                 <groupId>org.pitest</groupId>
                 <artifactId>pitest-maven</artifactId>
+                <version>${pitest-maven.version}</version>
 
                 <executions>
                     <execution>
