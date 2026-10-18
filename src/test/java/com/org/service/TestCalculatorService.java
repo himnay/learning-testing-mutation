@@ -201,8 +201,8 @@ class TestCalculatorService {
             assertTrue(ex.getMessage().contains("negative"));
         }
 
-        @ParameterizedTest(name = "{0}! overflows a long")
         @ValueSource(ints = {21, 25, Integer.MAX_VALUE})
+        @ParameterizedTest(name = "{0}! overflows a long")
         @DisplayName("throws instead of silently overflowing above 20! — kills boundary mutant (> vs >=)")
         void overflowThrows(int n) {
             ArithmeticException ex = assertThrows(ArithmeticException.class, () -> calculator.factorial(n));
