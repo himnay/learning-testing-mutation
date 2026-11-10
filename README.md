@@ -53,7 +53,7 @@ flowchart LR
 ## <span style="color:hsl(127,80%,58%)">2. 🔨 Parent POM Hierarchy</span>
 
 ```
-org.springframework.boot:spring-boot-starter-parent:4.1.1
+org.springframework.boot:spring-boot-starter-parent:4.1.2
   └── com.org.llm:super-pom:1.2.0
         └── com.org.test:mutation-testing:1.0-SNAPSHOT
 ```
@@ -126,7 +126,7 @@ src/
 | Component               | Version | Source                                                       |
 |-------------------------|---------|--------------------------------------------------------------|
 | Java                    | 27      | super-pom 1.2.0 `java.version`                               |
-| JUnit Jupiter (JUnit 6) | 6.0.3   | managed by Spring Boot 4.1.1 (via super-pom)                 |
+| JUnit Jupiter (JUnit 6) | 6.0.3   | managed by Spring Boot 4.1.2 (via super-pom)                 |
 | PITest (pitest-maven)   | 1.30.0  | super-pom `pitest-maven.version` (as of Sep 2026)            |
 | pitest-junit5-plugin    | 1.2.3   | super-pom `pitest-junit5-plugin.version`; works with JUnit 6 |
 | maven-surefire-plugin   | 3.x     | inherited (super-pom → spring-boot-starter-parent)           |
